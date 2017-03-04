@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <form [formGroup]="Formulario" >     
+ <ion-list>
+ <ion-list radio-group formControlName="Genero" [(ngModel)]="Genero">
+    <ion-list-header>
+          Genero
+      </ion-list-header>          
+      <ion-item *ngIf="Formulario.get('Genero').errors" >
+        <ion-label >Másculino</ion-label>
+        <ion-radio value="Masculino"  (ionSelect)="Evento('M')"  style="border-style:solid; border-color:#FF0000" ></ion-radio>
+      </ion-item>
+
+    <ion-item *ngIf="Formulario.get('Genero').errors">
+        <ion-label>Femenino</ion-label>
+        <ion-radio value="Femenino" (ionSelect)="Evento('F')" style="border-style:solid; border-color:#FF0000"></ion-radio>       
+      </ion-item>
+
+      <ion-item *ngIf="!Formulario.get('Genero').errors">
+        <ion-label>Masculino</ion-label>
+        <ion-radio value="M"></ion-radio>
+      </ion-item>
+      
+      <ion-item *ngIf="!Formulario.get('Genero').errors">
+        <ion-label>Femenino</ion-label>
+        <ion-radio value="F"></ion-radio>        
+      </ion-item>
+      
+      <ion-item *ngIf="Formulario.get('Genero').errors">
+        <p *ngIf="Formulario.get('Genero').hasError('required')">Seleccione un ion-radio</p>        
+      </ion-item>      
+ </ion-list>
+
+ <ion-list radio-group formControlName="Escolaridad" [(ngModel)]="Escolaridad">
+    <ion-list-header>
+          Escolaridad
+      </ion-list-header>          
+      <ion-item>
+        <ion-label >BASICA</ion-label>
+        <ion-radio value="basica"></ion-radio>
+      </ion-item>
+
+    <ion-item>
+        <ion-label>MEDIA</ion-label>
+        <ion-radio value="media"></ion-radio>       
+      </ion-item>
+
+      <ion-item>
+        <ion-label>SUPERIOR</ion-label>
+        <ion-radio value="superior"></ion-radio>
+      </ion-item>      
+
+        <ion-item *ngIf="Formulario.get('Escolaridad').errors">
+        <p *ngIf="Formulario.get('Escolaridad').hasError('required')">Seleccione un ion-radio</p>        
+      </ion-item>      
+ </ion-list>
+ <button ion-button block type="submit" [disabled]="Formulario.invalid" (click)="submit()">Guardar</button>
+ </ion-list>
+ </form>
+</ion-content>
